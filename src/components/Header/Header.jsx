@@ -6,6 +6,9 @@ import { useThemeStore } from '../../stores/themeStore'
 import { useCartStore } from '../../stores/cartStore'
 
 export default function Header() {
+  const brandLogo = import.meta.env.VITE_LOGO_MAIN || '/assets/haruki-logo.svg'
+  const fallbackLogo = import.meta.env.VITE_LOGO_FALLBACK || '/assets/haruki-logo.svg'
+
   const toggle = useThemeStore(s => s.toggle)
   const theme = useThemeStore(s => s.theme)
   const items = useCartStore(s => s.items)
@@ -24,10 +27,10 @@ export default function Header() {
           <div className={styles.brandBlock}>
             <Link to="/" className={styles.brand} aria-label="Go to home">
               <img
-                src="/assets/haruki-logo-horizontal.png"
+                src={brandLogo}
                 alt="Haruki logo"
                 className={styles.brandLogo}
-                onError={event => { event.currentTarget.src = '/assets/haruki-logo.svg' }}
+                onError={event => { event.currentTarget.src = fallbackLogo }}
               />
             </Link>
             <span className={styles.tagline}>Anime streetwear & collectibles</span>

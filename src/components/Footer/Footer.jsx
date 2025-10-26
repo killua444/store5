@@ -5,6 +5,9 @@ import styles from './Footer.module.css'
 const YEAR = new Date().getFullYear()
 
 export default function Footer(){
+  const roundLogo = import.meta.env.VITE_LOGO_ROUND || import.meta.env.VITE_LOGO_MAIN || '/assets/haruki-logo.svg'
+  const fallbackLogo = import.meta.env.VITE_LOGO_FALLBACK || '/assets/haruki-logo.svg'
+
   return (
     <footer className={`footer ${styles.footer}`}>
       <div className="container">
@@ -12,9 +15,9 @@ export default function Footer(){
           <div className={styles.brand}>
             <Link to="/" className={styles.logo} aria-label="Haruki home">
               <img
-                src="/assets/haruki-logo-round.png"
+                src={roundLogo}
                 alt="Haruki logo"
-                onError={event => { event.currentTarget.src = '/assets/haruki-logo.svg' }}
+                onError={event => { event.currentTarget.src = fallbackLogo }}
               />
             </Link>
             <p>Anime-first streetwear. Premium fabrics, limited drops, curated for the fandom.</p>
