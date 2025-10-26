@@ -12,10 +12,17 @@ const sortOptions = [
 ]
 
 function mapProduct(record){
+  const ratings = record.product_ratings || []
+  const count = ratings.length
+  const average = count
+    ? ratings.reduce((sum, item) => sum + Number(item.rating || 0), 0) / count
+    : null
+  const fallback = record.rating != null ? Number(record.rating) : null
   return {
     ...record,
     images: record.product_images || record.images || [],
-    rating: record.rating || 4.8,
+    rating: average ?? fallback ?? 0,
+    rating_count: count,
   }
 }
 
@@ -39,7 +46,7 @@ export default function Catalog(){
         }
         const { data, error } = await supabase
           .from('products')
-          .select('*, product_images(*)')
+          .select('*, product_images(*), product_ratings(rating)')
           .eq('active', true)
           .order('created_at', { ascending: false })
         if(error) throw error

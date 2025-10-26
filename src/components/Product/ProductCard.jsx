@@ -11,7 +11,8 @@ export default function ProductCard({ product }){
   const wishlist = useCartStore(s => s.wishlist)
   const wish = wishlist.includes(product.id)
   const img = product.images?.[0]
-  const rating = Number.isFinite(product.rating) ? product.rating.toFixed(1) : '4.8'
+  const ratingValue = Number.isFinite(product.rating) ? Number(product.rating).toFixed(1) : '—'
+  const ratingCount = Number(product.rating_count || 0)
 
   function handleQuickAdd() {
     add({
@@ -54,7 +55,8 @@ export default function ProductCard({ product }){
           <div className={styles.price}>{formatPrice(product.base_price)}</div>
           <div className={styles.rating}>
             <Star size={16} aria-hidden />
-            {rating}
+            {ratingValue}
+            {ratingCount > 0 && <span className={styles.ratingCount}>({ratingCount})</span>}
           </div>
         </div>
 

@@ -5,10 +5,17 @@ import styles from './Home.module.css'
 import { supabase, hasSupabaseConfig } from '../lib/supabaseClient'
 
 function mapProduct(record){
+  const ratings = record.product_ratings || []
+  const count = ratings.length
+  const average = count
+    ? ratings.reduce((sum, item) => sum + Number(item.rating || 0), 0) / count
+    : null
+  const fallback = record.rating != null ? Number(record.rating) : null
   return {
     ...record,
     images: record.product_images || record.images || [],
-    rating: record.rating || 4.8,
+    rating: average ?? fallback ?? 0,
+    rating_count: count,
   }
 }
 
@@ -27,7 +34,7 @@ export default function Home(){
         }
         const { data, error } = await supabase
           .from('products')
-          .select('*, product_images(*)')
+          .select('*, product_images(*), product_ratings(rating)')
           .eq('active', true)
           .order('created_at', { ascending: false })
           .limit(8)
@@ -50,7 +57,7 @@ export default function Home(){
         <div className="container">
           <div className={`${styles.heroCard} card glass`}>
             <div className={styles.heroCopy}>
-              <span className="eyebrow">Season 03 Â· Drop 05</span>
+              <span className="eyebrow">Season 03 · Drop 05</span>
               <h1>Bold prints, fan energy, everyday comfort.</h1>
               <p>Curated anime tees & hoodies designed with the community. Premium fabrics, obsessively detailed artwork, limited releases weekly.</p>
               <div className={styles.heroActions}>

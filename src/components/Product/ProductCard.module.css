@@ -127,6 +127,11 @@
   color:var(--primary);
 }
 
+.ratingCount{
+  font-size:var(--f-xs);
+  color:var(--text-micro);
+}
+
 .actions{
   margin-top:auto;
 }
