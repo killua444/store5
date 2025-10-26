@@ -1,0 +1,127 @@
+.page{
+  display:grid;
+  gap:var(--section-gap);
+}
+
+.hero{
+  position:relative;
+}
+
+.heroCard{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:var(--sp-6);
+  padding:clamp(2.75rem, 3vw, 3.75rem);
+  overflow:hidden;
+}
+
+.heroCard::before,
+.heroCard::after{
+  content:'';
+  position:absolute;
+  border-radius:999px;
+  filter:blur(60px);
+  opacity:0.8;
+}
+
+.heroCard::before{
+  width:320px;
+  height:320px;
+  top:-140px;
+  right:10%;
+  background:rgba(255,46,99,0.42);
+}
+
+.heroCard::after{
+  width:240px;
+  height:240px;
+  bottom:-120px;
+  left:16%;
+  background:rgba(0,224,255,0.3);
+}
+
+.heroCard > *{
+  position:relative;
+  z-index:1;
+}
+
+.heroCopy{
+  display:grid;
+  gap:var(--sp-4);
+}
+
+.heroCopy h1{
+  max-width:540px;
+}
+
+.heroCopy p{
+  color:var(--text-soft);
+  font-size:1.05rem;
+  line-height:1.65;
+  max-width:520px;
+}
+
+.heroActions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--sp-3);
+}
+
+.heroStats{
+  display:grid;
+  gap:var(--sp-4);
+  align-content:start;
+}
+
+.heroStats > div{
+  display:grid;
+  gap:0.35rem;
+  padding:var(--sp-4);
+  border-radius:var(--r-16);
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(12,18,34,0.4);
+  box-shadow:0 14px 28px rgba(7,11,22,0.28);
+  backdrop-filter:blur(18px);
+}
+
+.statValue{
+  font-size:1.4rem;
+  font-weight:700;
+  letter-spacing:-0.01em;
+  color:var(--text);
+}
+
+.statLabel{
+  font-size:var(--f-sm);
+  color:var(--text-micro);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+}
+
+:global(.theme-light) :local(.heroStats) > div{
+  background:rgba(255,255,255,0.75);
+  border-color:rgba(255,46,99,0.18);
+  box-shadow:0 20px 32px rgba(24,34,78,0.14);
+}
+
+@media(max-width:960px){
+  .heroCard{
+    gap:var(--sp-5);
+  }
+  .heroStats{
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  }
+}
+
+@media(max-width:640px){
+  .heroCard{
+    padding:var(--sp-5);
+  }
+  .heroStats{
+    gap:var(--sp-3);
+  }
+  .heroStats > div{
+    padding:var(--sp-3);
+  }
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="120" viewBox="0 0 320 120">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#00e0ff" stop-opacity="0.45"/>
+      <stop offset="55%" stop-color="#0a0a23" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="320" height="120" fill="#0a0a23"/>
+  <rect width="320" height="120" fill="url(#glow)"/>
+  <g fill="#f4f4f9" stroke="#0a0a23" stroke-width="2.5" stroke-linejoin="round" font-family="'Segoe UI', 'Arial Black', sans-serif" font-size="62" font-weight="900" letter-spacing="4">
+    <text x="160" y="78" text-anchor="middle">HARUKI</text>
+  </g>
+  <text x="160" y="104" text-anchor="middle" font-family="monospace" font-size="16" fill="#ff2e63">春木</text>
+</svg>

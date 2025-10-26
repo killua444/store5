@@ -1,0 +1,79 @@
+.hero{
+  position:relative;
+}
+
+.panel{
+  position:relative;
+  display:grid;
+  gap:var(--sp-6);
+  padding:clamp(2.5rem, 3vw, 3.5rem);
+  overflow:hidden;
+}
+
+.panel::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(140deg, rgba(255,46,99,0.36), rgba(0,224,255,0.14));
+  opacity:0.75;
+  z-index:0;
+}
+
+.panel > *{
+  position:relative;
+  z-index:1;
+}
+
+.copy{
+  display:grid;
+  gap:var(--sp-4);
+  max-width:520px;
+}
+
+.copy p{
+  color:var(--text-soft);
+  font-size:1.05rem;
+  line-height:1.65;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--sp-3);
+}
+
+.highlights{
+  display:flex;
+  gap:var(--sp-5);
+  flex-wrap:wrap;
+}
+
+.highlight{
+  display:grid;
+  gap:0.35rem;
+  min-width:140px;
+}
+
+.highlightValue{
+  font-family:var(--font-display);
+  font-size:clamp(1.65rem, 1.2rem + 1.8vw, 2.6rem);
+  font-weight:700;
+  letter-spacing:-0.02em;
+  color:var(--text);
+}
+
+.highlightLabel{
+  font-size:var(--f-sm);
+  color:var(--text-micro);
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+
+@media(max-width:720px){
+  .panel{
+    gap:var(--sp-5);
+  }
+  .highlights{
+    gap:var(--sp-4);
+  }
+}
